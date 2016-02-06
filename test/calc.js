@@ -1,5 +1,6 @@
 
 /* jshint node: true */
+/*global describe, it, before, beforeEach, after, afterEach */
 'use strict';
 
 var should = require('chai').should();
@@ -25,7 +26,18 @@ describe('date conversion', function() {
     
   });
   
-  it('should convert an invalid date format to null', function() {
+  it('should convert an invalid string date format to null', function() {
+    assert.isNull(calc.toDate(''));
+    assert.isNull(calc.toDate(null));
+    assert.isNull(calc.toDate(undefined));
+    assert.isNull(calc.toDate(NaN));
+    assert.isNull(calc.toDate(0));
+    assert.isNull(calc.toDate(100000));
+    assert.isNull(calc.toDate({}));
+    assert.isNull(calc.toDate([]));
+    assert.isNull(calc.toDate(true));
+    assert.isNull(calc.toDate(false));
+    assert.isNull(calc.toDate('a'));    
     assert.isNull(calc.toDate('07/11/1972 12:00:01'));
     assert.isNull(calc.toDate('O7/11/1972'));
     assert.isNull(calc.toDate('25/25/1972'));
@@ -34,12 +46,13 @@ describe('date conversion', function() {
     assert.isNull(calc.toDate('1/1/1'));
     assert.isNull(calc.toDate('0/0/1901'));
     assert.isNull(calc.toDate(' 0 7 / 0 7 / 1 9 7 7 '));
-    
+    assert.isNull(calc.toDate('31/12/1899'));
+    assert.isNull(calc.toDate('01/01/3000'));
   });
 });
 
 describe('date calculation', function() {  
-  it('should return the days between 2 dates.', function() {
+  it('should return the days between 2 dates. The start and end dates are not counted.', function() {
     
     calc.fullDays('1/1/2000', '3/1/2000').should.equal(1);
 

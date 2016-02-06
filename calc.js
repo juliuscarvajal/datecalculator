@@ -14,6 +14,9 @@ var day = inRange(1, 31);
 module.exports = {
   // This will convert an input string of DD/MM/YYYY to the default JS Date compliant format MM/DD/YYYY
   toDate: function(str) {
+    if (typeof (str) !== 'string' || !str)
+      return null;
+    
     var t = str.trim();
     t = t.split(/[\s\D]+/); //space or non-digit delimeters
 
@@ -25,11 +28,9 @@ module.exports = {
     var m = month(t[1]) ? t[1] : false;
     var d = day(t[0]) ? t[0] : false;
     
-    // if any of the y, m, d are -1 return null
+    // if any of the y, m, d are false return null
     var date = y && m && d ? new Date(y, parseInt(m) - 1, d) : null;
-    
-    console.log('date:', str, y, parseInt(m) - 1, d, date);
-    
+        
     return date;
   },
   
