@@ -1,0 +1,27 @@
+{
+  "name": "datecalculator",
+  "version": "1.0.0",
+  "description": "Calculates the full elapsed days between 2 dates. The first and the last dates are not counted.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliuscarvajal/datecalculator.git"
+  },
+  "keywords": [
+    "date",
+    "calculator"
+  ],
+  "author": "Julius Carvajal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliuscarvajal/datecalculator/issues"
+  },
+  "homepage": "https://github.com/juliuscarvajal/datecalculator#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
