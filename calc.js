@@ -24,13 +24,19 @@ module.exports = {
       return null; 
     }
     
-    var y = year(t[2]) ? t[2] : false;
-    var m = month(t[1]) ? t[1] : false;
-    var d = day(t[0]) ? t[0] : false;
-    
-    // if any of the y, m, d are false return null
-    var date = y && m && d ? new Date(y, parseInt(m) - 1, d) : null;
+    var y = year(t[2]) ? parseInt(t[2]) : false;
+    var m = month(t[1]) ? parseInt(t[1]) : false;
+    var d = day(t[0]) ? parseInt(t[0]) : false;
         
+    //using the gdate algorithm: https://alcor.concordia.ca/~gpkatch/gdate-algorithm.html
+    function g(y, m, d) {
+      m = (m + 9) % 12
+      y = y - parseInt(m/10)
+      return 365*y + parseInt(y/4) - parseInt(y/100) + parseInt(y/400) + parseInt((m*306 + 5)/10) + ( d - 1 );      
+    }
+    
+    var date = y && m && d ? g(y, m, d) : null;
+    
     return date;
   },
   
@@ -50,8 +56,8 @@ module.exports = {
       start = t;
     }
     
-    var diff = Math.round((end - start) / (1000 * 60 * 60 * 24)) - 1;
-    
+    var diff = end - start - 1;
+
     return diff;
   }
 };

@@ -7,25 +7,7 @@ var should = require('chai').should();
 var assert = require('chai').assert;
 var calc = require('../calc');
 
-describe('date conversion', function() {
-  it('should convert a string formated with DD/MM/YYYY to a valid date object.', function() {
-    
-    calc.toDate('07/11/1972').should.deep.equal(new Date(1972, 10, 7));
-    
-    calc.toDate('01/01/1901').should.deep.equal(new Date(1901, 0, 1));
-    
-    calc.toDate('31/12/2999').should.deep.equal(new Date(2999, 11, 31));
-    
-    calc.toDate(' 08/08/1988 ').should.deep.equal(new Date(1988, 7, 8));
-
-    calc.toDate(' 09 / 09 / 1999 ').should.deep.equal(new Date(1999, 8, 9));
-    
-    calc.toDate('31-12-2999').should.deep.equal(new Date(2999, 11, 31));    
-
-    calc.toDate('01 01 1901').should.deep.equal(new Date(1901, 0, 1));
-    
-  });
-  
+describe('date conversion', function() {  
   it('should convert an invalid string date format to null', function() {
     assert.isNull(calc.toDate(''));
     assert.isNull(calc.toDate(null));
